@@ -1,0 +1,24 @@
+Academia de futbol
+
+Menu:
+
+	Inicio (Samuel)
+	Registro de jugador (Samuel)
+	Grupos disponibles (Patrick)
+	Contacto (Patrick)
+
+Registro de jugadores:
+	edad
+	nombre
+		- Los grupos disponibles son:
+				Horarios
+				Profesores
+
+
+
+División: 
+
+1. Creación del proyecto (startproyect, start app, migrations, etc)(Patrick)
+2. Models, vistas (Patrick)
+3. Formulario agregar DB (Samuel)
+4. Formulario busqueda DB (Samuel)
