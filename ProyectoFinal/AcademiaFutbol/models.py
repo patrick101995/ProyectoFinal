@@ -9,8 +9,10 @@ class Grupo (models.Model):
     edadMinima = models.IntegerField()
     edadMazima = models.IntegerField()
 
+    def __str__(self):
+        return self.categoria
+
 class Jugador (models.Model):
     nombre = models.CharField(max_length=40)
     edad = models.IntegerField()
     estatura = models.IntegerField()
-    

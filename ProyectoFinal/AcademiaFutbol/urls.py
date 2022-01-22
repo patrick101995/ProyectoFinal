@@ -6,5 +6,7 @@ from AcademiaFutbol import views
 urlpatterns = [
     path('', views.inicio, name="inicio"),
     path('grupos', views.GrupoList.as_view(), name="GrupoList"),
-    path('registroJugador', views.RegistroJugadorList.as_view(), name="RegistroJugadorList")
+    path('registroJugador', views.RegistroJugadorList.as_view(), name="RegistroJugadorList"),
+    path('busquedaGrupo', views.busquedaGrupo, name="busquedaGrupo"),
+    path('buscar', views.buscar),
 ]

@@ -1,0 +1,11 @@
+{% extends "AcademiaFutbol/padre.html" %}
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+    <form action="/AcademiaFutbol/buscar" method="GET">
+        <input type="text" name="categoria" id="categoria">
+        <input type="submit" value="Buscar">
+    </form>
+
+{% endblock %}

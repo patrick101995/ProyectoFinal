@@ -21,4 +21,4 @@ División:
 1. Creación del proyecto (startproyect, start app, migrations, etc)(Patrick)
 2. Models, vistas (Patrick)
 3. Formulario agregar DB (Samuel)
-4. Formulario busqueda DB (Samuel)
+4. Formulario busqueda DB (Patrick)

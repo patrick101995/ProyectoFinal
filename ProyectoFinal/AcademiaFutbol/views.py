@@ -1,4 +1,5 @@
 
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
@@ -19,3 +20,22 @@ class GrupoList (ListView):
 class RegistroJugadorList(ListView):
     model = Jugador
     template_name = "AcademiaFutbol/registroJugador.html"
+
+def busquedaGrupo(request):
+    return render(request, "AcademiaFutbol/busquedaGrupo.html")
+
+def buscar(request):
+    
+    #respuesta = f"Estoy buscando el grupo: {request.GET['grupo']}"
+
+    if request.GET["categoria"]:
+        categoria = request.GET['categoria']
+        categoria = Grupo.objects.filter(categoria__icontains=categoria)
+
+        return render(request, "AcademiaFutbol/resultadoBusqueda.html", {"categoria":categoria})
+    
+    else:
+
+        respuesta = "No enviaste datos"
+
+    return HttpResponse(respuesta)
