@@ -3,6 +3,23 @@
 
 {% block contenidoQueCambia %}
 
-    <h1>este es el titulo del inicio que cambio</h1>
+    <h1 style="color: rgb(22, 241, 241);">Grupos Disponibles</h1>
+
+    <form action="/AcademiaFutbol/buscar" method="GET">
+        <input type="text" name="categoria" id="categoria">
+        <input type="submit" value="Buscar">
+    </form>
+
+    <h2>Todos los Cursos</h2>
+
+    {% for categoria in Grupo %}
+
+    <p>Categoria: {{categoria.categoria}}</p>
+    <p>Edad Minima: {{categoria.edadMinima}}</p>
+    <p>Edad Maxima: {{categoria.edadMazima}}</p>
+    <hr>
+
+    {% endfor %}
+
 
 {% endblock %}

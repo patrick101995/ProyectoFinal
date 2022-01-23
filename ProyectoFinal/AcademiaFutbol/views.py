@@ -16,13 +16,13 @@ def inicio(request):
 class GrupoList (ListView):
     model = Grupo
     template_name = "AcademiaFutbol/grupos.html"
+    categorias = Grupo.objects.all
+    
 
 class RegistroJugadorList(ListView):
     model = Jugador
     template_name = "AcademiaFutbol/registroJugador.html"
 
-def busquedaGrupo(request):
-    return render(request, "AcademiaFutbol/busquedaGrupo.html")
 
 def buscar(request):
     
