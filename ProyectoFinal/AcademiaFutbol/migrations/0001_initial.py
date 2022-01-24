@@ -29,4 +29,16 @@ class Migration(migrations.Migration):
                 ('estatura', models.IntegerField()),
             ],
         ),
+        migrations.CreateModel(
+            name='FormularioContacto',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('Pnombre', models.CharField(max_length=40)),
+                ('Snombre', models.CharField(max_length=40)),
+                ('correo', models.EmailField(max_length=254)),
+                ('telefono', models.IntegerField()),
+                ('comentarios', models.CharField(max_length=100)),
+            ],
+        ),
+
     ]
