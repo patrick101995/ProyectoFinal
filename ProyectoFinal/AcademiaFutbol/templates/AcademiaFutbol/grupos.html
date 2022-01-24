@@ -3,7 +3,7 @@
 
 {% block contenidoQueCambia %}
 
-    <h1 style="color: rgb(22, 241, 241);">Grupos Disponibles</h1>
+    <h1 style="color:azure;">Grupos Disponibles</h1>
 
     <form action="/AcademiaFutbol/buscar" method="GET">
         <input type="text" name="categoria" id="categoria">
@@ -11,15 +11,16 @@
     </form>
 
     <h2>Todos los Cursos</h2>
+    <section style="color: azure;">
+        {% for categoria in object_list %}
 
-    {% for categoria in Grupo %}
-
-    <p>Categoria: {{categoria.categoria}}</p>
-    <p>Edad Minima: {{categoria.edadMinima}}</p>
-    <p>Edad Maxima: {{categoria.edadMazima}}</p>
-    <hr>
+        <p>Categoria: {{categoria.categoria}}</p>
+        <p>Edad Minima: {{categoria.edadMinima}}</p>
+        <p>Edad Maxima: {{categoria.edadMazima}}</p>
+        <hr>
 
     {% endfor %}
+    </section>
 
 
 {% endblock %}

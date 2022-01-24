@@ -11290,3 +11290,8 @@ body {
   background: url("/static/AcademiaFutbol/assets/img2.jpeg") no-repeat center center fixed;
   background-size: cover;
 }
+
+.bigicon {
+  font-size: 35px;
+  color: #36A0FF;
+}
