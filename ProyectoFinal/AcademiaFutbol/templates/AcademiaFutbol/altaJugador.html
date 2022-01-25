@@ -1,0 +1,13 @@
+{% extends "AcademiaFutbol/padre.html" %}
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+    <h1>Jugadores Registrados:</h1>
+
+    {% for jugador in jugadores %}
+        {{ jugador }}
+        <br>
+    {% endfor %}
+
+{% endblock %}
