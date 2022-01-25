@@ -20,3 +20,10 @@ class Jugador (models.Model):
     
     def __str__(self):
         return f'{self.apellido}, {self.nombre}'
+
+class FormularioContacto (models.Model):
+    pNombre = models.CharField(max_length=40)
+    sNombre = models.CharField(max_length=40)
+    correo = models.EmailField()
+    telefono = models.IntegerField()
+    comentarios = models.CharField(max_length=100)
