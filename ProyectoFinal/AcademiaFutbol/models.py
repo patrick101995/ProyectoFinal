@@ -19,11 +19,8 @@ class Jugador (models.Model):
     estatura = models.IntegerField()
 
 class FormularioContacto (models.Model):
-    Pnombre = models.CharField(max_length=40)
-    Snombre = models.CharField(max_length=40)
+    pNombre = models.CharField(max_length=40)
+    sNombre = models.CharField(max_length=40)
     correo = models.EmailField()
     telefono = models.IntegerField()
     comentarios = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.Pnombre

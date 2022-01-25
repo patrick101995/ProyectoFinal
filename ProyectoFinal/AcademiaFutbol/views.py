@@ -1,5 +1,6 @@
 
 from dataclasses import field
+from msilib.schema import Class
 from pyexpat import model
 from re import template
 from sre_constants import SUCCESS
@@ -10,6 +11,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from AcademiaFutbol.models import Jugador, Grupo, FormularioContacto
 from django.urls import reverse_lazy
+from AcademiaFutbol.forms import ContactoFormulario
 
 
 # Create your views here.
@@ -44,8 +46,36 @@ def buscar(request):
 
     return HttpResponse(respuesta)
 
-class Contacto(CreateView):
-    model: FormularioContacto
+def contactoFormulario(request):
+    
+    if request.method == 'POST':
+        miFormulario = ContactoFormulario(request.POST)
 
-    field = ['Primer Nombre', 'Segundo Nombre', 'Email','Telefono', 'Comentario']
-    template_name = 'AcademiaFutbol/contacto.html'
+        if miFormulario.is_valid:
+            #informacion = miFormulario.cleaned_data
+            informacion = miFormulario
+            comentario = FormularioContacto (pNombre=informacion['Nombre'], sNombre=informacion['Apellido'], correo=informacion['correo'],telefono=informacion['telefono'],comentarios=informacion['comentarios'])
+
+            comentario.save
+
+            return render(request, "AcademiaFutbol/inicio.html")
+
+    else:
+        miFormulario = ContactoFormulario()
+
+    return render(request, "AcademiaFutbol/contacto.html", {"miFormulario":miFormulario})
+
+#def contactoFormulario(request):
+    
+#    if request.method == 'POST':
+#        datos = FormularioContacto(request.POST['Nombre'], request.POST['Apellido'],request.POST['correo'], request.POST['telefono'], request.POST['comentarios'])
+
+#        datos.save()
+
+#        return render(request, "AcademiaFutbol/inicio.html")
+
+#    return render(request, "AcademiaFutbol/contacto.html")
+
+class ContactoList(ListView):
+    model = FormularioContacto
+    template_name = "AcademiaFutbol/contacto.html"

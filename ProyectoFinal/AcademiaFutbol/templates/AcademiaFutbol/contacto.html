@@ -65,5 +65,27 @@
 </form>
 -->
 
+    <form action="" method="POST">{% csrf_token %}
+
+        <table>
+
+            {{miFormulario.as_table}}
+
+        </table>
+
+        <input type="submit", value="Enviar">
+
+    </form>
+
+    <section style="color: azure;">
+        {% for comentario in object_list %}
+
+        <p>Nombre: {{comentario.pNombre}}</p>
+        <p>Apellido: {{comentario.sNombre}}</p>
+        <p>Correo: {{telefono.correo}}</p>
+        <hr>
+
+    {% endfor %}
+    </section>
 
 {% endblock %}
