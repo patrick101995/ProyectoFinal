@@ -12,10 +12,10 @@ from AcademiaFutbol.forms import Registro_jugador, Registro_grupo
 def inicio(request):
     return render(request, "AcademiaFutbol/inicio.html")
 
-# class GrupoList (ListView):
-#     model = Grupo
-#     template_name = "AcademiaFutbol/grupos.html"
-#     categorias = Grupo.objects.all
+class GrupoList (ListView):
+     model = Grupo
+     template_name = "AcademiaFutbol/grupos.html"
+
     
 
 # class RegistroJugadorList(ListView):
@@ -82,4 +82,24 @@ def registro_grupo(request):
         formulario = Registro_grupo()
             
     return render(request, "AcademiaFutbol/formulario_grupo.html", {"formulario":formulario})
+
+
+def contactoFormulario(request):
+    
+    if request.method == 'POST':
+        miFormulario = ContactoFormulario(request.POST)
+
+        if miFormulario.is_valid:
+            #informacion = miFormulario.cleaned_data
+            informacion = miFormulario
+            comentario = FormularioContacto (pNombre=informacion['Nombre'], sNombre=informacion['Apellido'], correo=informacion['correo'],telefono=informacion['telefono'],comentarios=informacion['comentarios'])
+
+            comentario.save
+
+            return render(request, "AcademiaFutbol/inicio.html")
+
+    else:
+        miFormulario = ContactoFormulario()
+
+    return render(request, "AcademiaFutbol/contacto.html", {"miFormulario":miFormulario})
         
