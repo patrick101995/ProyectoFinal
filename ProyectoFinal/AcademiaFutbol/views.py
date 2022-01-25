@@ -2,8 +2,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
-from AcademiaFutbol.models import Jugador, Grupo
-from AcademiaFutbol.forms import Registro_jugador, Registro_grupo
+from AcademiaFutbol.models import Jugador, Grupo, FormularioContacto
+from AcademiaFutbol.forms import Registro_jugador, Registro_grupo, ContactoFormulario
 
 
 # Create your views here.
@@ -13,9 +13,9 @@ def inicio(request):
     return render(request, "AcademiaFutbol/inicio.html")
 
 class GrupoList (ListView):
-     model = Grupo
-     template_name = "AcademiaFutbol/grupos.html"
-
+    model = Grupo
+    template_name = "AcademiaFutbol/grupos.html"
+    categorias = Grupo.objects.all
     
 
 # class RegistroJugadorList(ListView):
@@ -103,3 +103,6 @@ def contactoFormulario(request):
 
     return render(request, "AcademiaFutbol/contacto.html", {"miFormulario":miFormulario})
         
+class ContactoList(ListView):
+    model = FormularioContacto
+    template_name = "AcademiaFutbol/contacto.html"
