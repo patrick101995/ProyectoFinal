@@ -1,10 +1,9 @@
 
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView
-from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from AcademiaFutbol.models import Jugador, Grupo
+from AcademiaFutbol.forms import Registro_jugador, Registro_grupo
 
 
 # Create your views here.
@@ -13,15 +12,23 @@ from AcademiaFutbol.models import Jugador, Grupo
 def inicio(request):
     return render(request, "AcademiaFutbol/inicio.html")
 
-class GrupoList (ListView):
-    model = Grupo
-    template_name = "AcademiaFutbol/grupos.html"
-    categorias = Grupo.objects.all
+# class GrupoList (ListView):
+#     model = Grupo
+#     template_name = "AcademiaFutbol/grupos.html"
+#     categorias = Grupo.objects.all
     
 
-class RegistroJugadorList(ListView):
-    model = Jugador
-    template_name = "AcademiaFutbol/registroJugador.html"
+# class RegistroJugadorList(ListView):
+#     model = Jugador
+#     template_name = "AcademiaFutbol/registroJugador.html"
+
+def altaJugador(request):
+    return render(request, 'AcademiaFutbol/altaJugador.html',
+        {'jugadores': Jugador.objects.all()})
+    
+def altaGrupo(request):
+    return render(request, 'AcademiaFutbol/altaGrupo.html',
+        {'grupos': Grupo.objects.all()})
 
 
 def buscar(request):
@@ -39,3 +46,40 @@ def buscar(request):
         respuesta = "No enviaste datos"
 
     return HttpResponse(respuesta)
+
+def registro_jugador(request):
+    
+    if request.method == "POST":
+        formulario = Registro_jugador(request.POST)
+    
+        if formulario.is_valid():
+            
+            info = formulario.cleaned_data
+            Jugador.objects.create(nombre=info["nombre"], apellido=info["apellido"], edad=info["edad"], estatura=info["estatura"])
+            
+            return redirect("AltaJugador")
+        
+    else:
+            
+        formulario = Registro_jugador()
+            
+    return render(request, "AcademiaFutbol/formulario_jugador.html", {"formulario":formulario})
+
+def registro_grupo(request):
+    
+    if request.method == "POST":
+        formulario = Registro_grupo(request.POST)
+    
+        if formulario.is_valid():
+            
+            info = formulario.cleaned_data
+            Grupo.objects.create(categoria=info['categoria'], edadMinima=info['edadMinima'], edadMazima=info['edadMazima'])
+            
+            return redirect("AltaGrupo")
+        
+    else:
+            
+        formulario = Registro_grupo()
+            
+    return render(request, "AcademiaFutbol/formulario_grupo.html", {"formulario":formulario})
+        
