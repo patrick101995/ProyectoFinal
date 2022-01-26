@@ -1,0 +1,15 @@
+{% extends "AcademiaFutbol/padre.html" %}
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+    <h1>Todos los comentarios:</h1>
+
+    {% for comentario in comentarios %}
+        <p>Categoria: {{ comentario.pNombre }}</p>
+        <p>Edad Minima: {{ comentario.sNombre }}</p>
+        <p>Edad Maxima: {{ comentario.correo }}</p>
+        <hr> 
+    {% endfor %}
+
+{% endblock %}

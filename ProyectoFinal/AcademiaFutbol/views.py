@@ -30,6 +30,9 @@ def altaGrupo(request):
     return render(request, 'AcademiaFutbol/altaGrupo.html',
         {'grupos': Grupo.objects.all()})
 
+def altaComentario(request):
+    return render(request, 'AcademiaFutbol/comentarios.html',
+        {'comentarios':FormularioContacto.objects.all()})
 
 def buscar(request):
     
@@ -85,24 +88,25 @@ def registro_grupo(request):
 
 
 def contactoFormulario(request):
-    
+
     if request.method == 'POST':
         miFormulario = ContactoFormulario(request.POST)
 
-        if miFormulario.is_valid:
-            #informacion = miFormulario.cleaned_data
-            informacion = miFormulario
-            comentario = FormularioContacto (pNombre=informacion['Nombre'], sNombre=informacion['Apellido'], correo=informacion['correo'],telefono=informacion['telefono'],comentarios=informacion['comentarios'])
+        if miFormulario.is_valid():
 
-            comentario.save
 
-            return render(request, "AcademiaFutbol/inicio.html")
+            informacion = miFormulario.cleaned_data
+            FormularioContacto.objects.create(pNombre=informacion['Nombre'], sNombre=informacion['Apellido'], correo=informacion['correo'],telefono=informacion['telefono'],comentarios=informacion['comentarios'])
+
+            
+
+            return redirect("comentarios")
 
     else:
         miFormulario = ContactoFormulario()
 
     return render(request, "AcademiaFutbol/contacto.html", {"miFormulario":miFormulario})
-        
-class ContactoList(ListView):
-    model = FormularioContacto
-    template_name = "AcademiaFutbol/contacto.html"
+
+#Class ContactoList(ListView):
+#   model = FormularioContacto
+#   template_name = "AcademiaFutbol/contacto.html"

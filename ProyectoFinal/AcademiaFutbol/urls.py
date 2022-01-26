@@ -11,6 +11,8 @@ urlpatterns = [
     path('buscar', views.buscar),
     path('formulario_jugador', views.registro_jugador, name="formulario_jugador"),
     path('formulario_grupo', views.registro_grupo, name="formulario_grupo"),
-    path('contactoForm',views.contactoFormulario, name="contacto"),
-    path('contacto', views.ContactoList.as_view(), name="ContactoList"),
+    path('contacto',views.contactoFormulario, name="AltaComentario"),
+    path('comentarios', views.altaComentario, name="comentarios")
+    #path('contactoForm',views.contactoFormulario, name="contacto"),
+    #path('contacto', views.ContactoList.as_view(), name="ContactoList"),
 ]

@@ -6,8 +6,10 @@
     <h1>Grupos Registrados:</h1>
 
     {% for grupo in grupos %}
-        {{ grupo }}
-        <br>
+        <p>Categoria: {{ grupo.categoria }}</p>
+        <p>Edad Minima: {{ grupo.edadMinima }}</p>
+        <p>Edad Maxima: {{ grupo.edadMazima }}</p>
+        <hr> 
     {% endfor %}
 
 {% endblock %}

@@ -1,0 +1,22 @@
+{% extends "AcademiaFutbol/padre.html" %}
+{% load static %}
+
+{% block contenidoQueCambia %}
+{% if formulario.errors %}
+<p style="color: red;">{{ formulario.errors }}</p>
+{% endif %}
+
+
+<form action="{% url 'AltaComentario' %}" method="POST">
+{% csrf_token %}
+
+    <table>
+        {{ miFormulario.as_table }}
+    </table>
+
+    <input type="submit" value="Enviar">
+</form>
+
+
+
+{% endblock %}
